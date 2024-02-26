@@ -1,0 +1,35 @@
+artifact_dir : "artifact"
+
+DataIngestionConfig :
+  artifact_path : "artifact/data_ingestion"
+  database_name : "MalwareModel"
+  collection_name : "malwareData"
+
+DataValidationConfig :
+  artifact_path : "artifact/data_validation"
+  data_path : "artifact/data_ingestion/ingested_data.csv"
+  schema_path : "schema.yaml"
+
+DataTransformationConfig :
+  artifact_path : "artifact/data_transformation"
+  data_path : "artifact/data_ingestion/ingested_data.csv"
+  train_data_path : "artifact/data_transformation/train/"
+  test_data_path : "artifact/data_transformation/test/"
+
+ModelTrainingConfig:
+  artifact_path : "artifact/model_creation/"
+  transformers_path : "artifact/model_creation/transformers/"
+  train_data_path : "artifact/data_transformation/train/train.csv"
+
+ModelEvaluationConfig:
+  artifact_path : "artifact/model_evaluation/"
+  test_data_path : "artifact/data_transformation/test/test.csv"
+  classifier_dir : "artifact/model_creation/"
+  encoder_dir : "artifact/model_creation/transformers/"
+
+ModelPusherConfig:
+  bucket_name : "malware-classifier-modelling"
+  classifier_dir : "artifact/model_creation/"
+  encoder_dir : "artifact/model_creation/transformers/"
+  evaluation_dir : "artifact/model_evaluation/"
+  model_bucket_path : "model/"
